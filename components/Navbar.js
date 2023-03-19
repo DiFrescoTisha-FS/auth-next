@@ -1,8 +1,19 @@
 import Link from 'next/link'
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
 
 function Navbar() {
-  const [session, loading] = useSession()
+  // const {session, loading} = useSession()
+const { data: session, loading } = useSession()
+
+if (session === "loading") {
+  return <p>Loading...</p>
+}
+
+if (session === "unauthenticated") {
+  return <p>Access Denied</p>
+}
+// const result = useSession()
+console.log({ session, loading })
   return (
     <nav className='header'>
       <h1 className='logo'>
@@ -11,49 +22,47 @@ function Navbar() {
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
         <li>
           <Link href='/'>
-            <a>Home</a>
+            Home
           </Link>
         </li>
         <li>
           <Link href='/dashboard'>
-            <a>Dashboard</a>
+            Dashboard
           </Link>
         </li>
         <li>
           <Link href='/blog'>
-            <a>Blog</a>
+            Blog
           </Link>
         </li>
 
         {!loading && !session && (
           <li>
-            <Link href='/api/auth/signin'>
-              <a
-                onClick={e => {
-                  e.preventDefault()
-                  signIn('github')
-                }}>
-                Sign In
-              </a>
+            <Link
+              href='/api/auth/signin'
+              onClick={e => {
+                e.preventDefault()
+                signIn('github')
+              }}>             
+                Sign In             
             </Link>
           </li>
         )}
         {session && (
           <li>
-            <Link href='/api/auth/signout'>
-              <a
-                onClick={e => {
-                  e.preventDefault()
-                  signOut()
-                }}>
-                Sign Out
-              </a>
+            <Link
+              href='/api/auth/signout'
+              onClick={e => {
+                e.preventDefault()
+                signOut('github')
+              }}>              
+                Sign Out              
             </Link>
           </li>
         )}
       </ul>
     </nav>
-  )
+  );
 }
 
 export default Navbar

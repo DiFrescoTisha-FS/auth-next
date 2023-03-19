@@ -1,14 +1,17 @@
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from "next-auth/react"
 import Navbar from '../components/Navbar'
 import '../styles/globals.css'
 import '../components/Navbar.css'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ 
+  Component, 
+  pageProps: { session, ...pageProps },
+}) {
   return (
-    <Provider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
       <Navbar />
       <Component {...pageProps} />
-    </Provider>
+    </SessionProvider>
   )
 }
 
