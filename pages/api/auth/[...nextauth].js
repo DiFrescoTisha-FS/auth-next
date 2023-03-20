@@ -4,7 +4,7 @@ import NextAuth from "next-auth";
 
 import GitHubProvider from "next-auth/providers/github"
 
-export const authOptions = {
+export default NextAuth({
     providers: [
         // SpotifyProvider({
         //     clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -31,7 +31,6 @@ export const authOptions = {
     },
     jwt: {
         secret: 'uyguygkjg'
-    }
-}
+    },
+})
 
-export default NextAuth(authOptions)
