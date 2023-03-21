@@ -1,7 +1,7 @@
 import { getSession, useSession } from 'next-auth/react'
 
 function Blog({ data }) {
-  const { session } = useSession()
+  const { data: session } = useSession()
 
   return <h1>Blog page - {data}</h1>
 }
@@ -20,8 +20,9 @@ export async function getServerSideProps(context) {
   }
   return {
     props: {
-        session,
+
       data: session ? 'List of 100 personalized blogs': 'List of free blogs',
+      session,
     //   session
     }
   }

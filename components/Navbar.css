@@ -52,12 +52,12 @@ ul {
     box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
   }
   
-  .loading {
+  /* .loading {
     opacity: 0;
     transition: all 0.2s ease-in;
-  }
+  } */
   
-  .loaded {
+  /* .loaded {
     opacity: 1;
     transition: all 0.2s ease-in;
-  }
+  } */

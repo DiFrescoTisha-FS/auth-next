@@ -4,16 +4,8 @@ import { useSession, signIn, signOut, getSession } from "next-auth/react"
 function Navbar() {
   // const {session, loading} = useSession()
 const { data: session, loading } = useSession()
-
-if (session === "loading") {
-  return <p>Loading...</p>
-}
-
-if (session === "unauthenticated") {
-  return <p>Access Denied</p>
-}
 // const result = useSession()
-console.log({ session, loading })
+console.log({ session })
   return (
     <nav className='header'>
       <h1 className='logo'>
