@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useSession } from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
 
 export default function Home() {
   const { data: session }= useSession()
@@ -21,4 +21,8 @@ export default function Home() {
       </main>
     </div>
   )
+}
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx)
+  return ({props: {session}})
 }

@@ -34,6 +34,7 @@ console.log({ session })
               href='/api/auth/signin'
               onClick={e => {
                 e.preventDefault()
+                // signIn('spotify')
                 signIn('github')
               }}>             
                 Sign In             
@@ -46,6 +47,7 @@ console.log({ session })
               href='/api/auth/signout'
               onClick={e => {
                 e.preventDefault()
+                // signOut('spotify')
                 signOut('github')
               }}>              
                 Sign Out              

@@ -25,7 +25,7 @@ export const authOptions = {
         //     nextAuthUrl: process.env.NEXTAUTH_URL,
         // })
     ],
-    database: process.env.DB_URL,
+    database: process.env.MONGODB_URI,
     session: {
         jwt: true
     },
