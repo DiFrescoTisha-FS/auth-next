@@ -5,7 +5,7 @@ function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null)
   useEffect(() => {
     async function fetchDashboardData() {
-      const response = await fetch('http://localhost:4000/dashboard')
+      const response = await fetch('http://localhost:3000/dashboard')
       const data = await response.json()
       setDashboardData(data)
       setIsLoading(false)
