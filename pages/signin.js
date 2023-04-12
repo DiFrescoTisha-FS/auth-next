@@ -1,7 +1,7 @@
 import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
 
@@ -27,9 +27,12 @@ function Signin({ providers }) {
         src="https://rb.gy/y9mwtb"
         height={250}
         width={600}
-        objectFit="contain"
         className="animate-pulse"
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto",
+          objectFit: "contain"
+        }} />
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button

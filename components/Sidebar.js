@@ -6,7 +6,7 @@ import {
   } from "@heroicons/react/solid";
   import { FaMicrophoneAlt } from "react-icons/fa";
   import { RiCompassFill } from "react-icons/ri";
-  import Image from "next/legacy/image";
+  import Image from "next/image";
   
   function Sidebar() {
     return (
@@ -15,8 +15,11 @@ import {
           src="https://rb.gy/xkacau"
           width={56}
           height={56}
-          objectFit="contain"
-        />
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            objectFit: "contain"
+          }} />
         <div className="flex flex-col space-y-8">
           <HomeIcon className="sidebarIcon text-white opacity-[0.85]" />
           <RiCompassFill className="sidebarIcon text-2xl" />
