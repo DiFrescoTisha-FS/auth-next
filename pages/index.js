@@ -12,7 +12,6 @@ import Link from 'next/link'
 
 
 export default function Home() {
-  console.log(Object, "objext console.log")
   const { data: session }= useSession()
   console.log({ session })
   return (
