@@ -1,15 +1,18 @@
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import logocircle from '/public/Spotify_Icon_RGB_Black.png'
+import Navbar from "@component/components/Navbar";
 
 function Login({ providers }) {
   return (
-    <div className="flex flex-col items-center bg-black min-h-screen w-full justify-center">
-      <Image src={logocircle} alt="Spotify logo" className="login_logo flex flex-col items-center justify-center" />
+    <div >
+      <Navbar/>
+      <div className="loginpage">
+      <Image src={logocircle} alt="Spotify logo" className="login_logo" />
       
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
-          <button className="login_button bg-[#18d860] text-white p-5 rounded-lg flex items-center justify-center"
+          <button className="login_button"
           onClick={() => signIn(provider.id, { callbackUrl: "/" })}
           >
             Login with {provider.name}
@@ -18,6 +21,7 @@ function Login({ providers }) {
         </>
         </div>
       ))}
+      </div>
   </div>
   );
 }

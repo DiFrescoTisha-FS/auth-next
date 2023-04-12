@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
+import Navbar from '@component/components/Navbar'
 
 export default function Home() {
   const { data: session }= useSession()
@@ -13,10 +14,10 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
+        <Navbar/>
       <main className={styles.main}>
         <h1 className={styles.title}>
-        {session ? `${session.user.name}, ` : ''}Welcome to{' '}
-          <a href=''>Next.js!</a>
+        {session ? `${session.user.name}, ` : ''}Welcome to Next.js!
         </h1>
       </main>
     </div>

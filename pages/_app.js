@@ -9,7 +9,7 @@ function MyApp({
 }) {
   return (
     <SessionProvider session={pageProps.session}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Component {...pageProps} />
     </SessionProvider>
   )

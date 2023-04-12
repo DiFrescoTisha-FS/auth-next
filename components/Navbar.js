@@ -17,17 +17,17 @@ console.log({ session })
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
         <li>
           <Link href='/'>
-            Home
+          {session ? `Home` : ''}
           </Link>
         </li>
         <li>
           <Link href='/dashboard'>
-            Dashboard
+          {session ? `Dashboard` : ''}
           </Link>
         </li>
         <li>
           <Link href='/blog'>
-            Blog
+          {session ? `Blog` : ''}
           </Link>
         </li>
 
