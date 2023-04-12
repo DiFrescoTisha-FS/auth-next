@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
+import Image from 'next/image'
+
+import logo from '/public/logo.png'
 
 function Navbar() {
   // const {session, loading} = useSession()
@@ -9,7 +12,7 @@ console.log({ session })
   return (
     <nav className='header'>
       <h1 className='logo'>
-        <a href='#'>NextAuth</a>
+        <Image src={logo} alt="spotify logo" className="nav_logo" />
       </h1>
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
         <li>
@@ -35,7 +38,7 @@ console.log({ session })
               onClick={e => {
                 e.preventDefault()
                 // signIn('spotify')
-                signIn('github')
+                signIn('spotify')
               }}>             
                 Sign In             
             </Link>
@@ -48,7 +51,7 @@ console.log({ session })
               onClick={e => {
                 e.preventDefault()
                 // signOut('spotify')
-                signOut('github')
+                signOut('spotify')
               }}>              
                 Sign Out              
             </Link>

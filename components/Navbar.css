@@ -16,7 +16,13 @@ ul {
   
   .logo {
     margin: 0;
-    font-size: 1.45em;
+    /* font-size: 1.45em; */
+  }
+
+  .nav_logo {
+    /* width: 80px; */
+    height: 25px;
+    margin-left: 60px;
   }
   
   .main-nav {

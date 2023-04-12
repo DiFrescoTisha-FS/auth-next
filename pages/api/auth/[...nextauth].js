@@ -19,11 +19,6 @@ const SPOTIFY_AUTHORIZATION_URL =
  */
 async function refreshAccessToken(token) {
   try {
-    // spotifyApi.setAccessToken(token.accessToken);
-    // spotifyApi.setRefreshToken(token.refreshToken);
-
-    // const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
-    // console.log("Refreshed token is", refreshedToken);
 
     const url =
       "https://accounts.spotify.com/api/token?" +
