@@ -1,18 +1,15 @@
-import { SessionProvider } from "next-auth/react"
-import Navbar from '../components/Navbar'
-import '../styles/globals.css'
-import '../components/Navbar.css'
+import "../styles/globals.css";
+import { SessionProvider } from "next-auth/react";
+import { RecoilRoot } from "recoil";
 
-function MyApp({ 
-  Component, 
-  pageProps: { session, ...pageProps },
-}) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <SessionProvider session={pageProps.session}>
-      {/* <Navbar /> */}
-      <Component {...pageProps} />
+    <SessionProvider session={session}>
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
     </SessionProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

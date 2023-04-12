@@ -1,16 +1,5 @@
 import NextAuth from "next-auth";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "../../../lib/mongodb";
 import SpotifyProvider from "next-auth/providers/spotify";
-// import spotifyApi, { LOGIN_URL } from "../../../lib/spotify";
-
-const SPOTIFY_AUTHORIZATION_URL =
-  "https://accounts.spotify.com/authorize?" +
-  new URLSearchParams({
-    prompt: "consent",
-    access_type: "offline",
-    response_type: "code",
-  });
 
 /**
  * Takes a token, and returns a new token with updated
@@ -19,7 +8,6 @@ const SPOTIFY_AUTHORIZATION_URL =
  */
 async function refreshAccessToken(token) {
   try {
-
     const url =
       "https://accounts.spotify.com/api/token?" +
       new URLSearchParams({
@@ -59,48 +47,35 @@ async function refreshAccessToken(token) {
 }
 
 export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
-  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     SpotifyProvider({
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-      authorization: SPOTIFY_AUTHORIZATION_URL,
+      authorization:
+        "https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private,user-read-email,streaming,user-read-private,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-recently-played,user-follow-read",
     }),
   ],
-  database: process.env.MONGODB_URI,
-  session: {
-    strategy: "jwt",
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  jwt: {
-    secret: process.env.NEXTAUTH_JWT_SECRET,
-  },
+
   callbacks: {
-    async jwt({ token, account, user }) {
-      // initail sign in
+    async jwt({ token, user, account }) {
+      // Initial sign in
       if (account && user) {
         return {
-          ...token,
           accessToken: account.access_token,
+          accessTokenExpires: Date.now() + account.expires_in * 1000,
           refreshToken: account.refresh_token,
-          username: account.providerAccountId,
-          accessTokenExpires: account.expires_at * 1000, // we are handling expiry times in milliseconds hence * 1000
           user,
         };
       }
 
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
-        console.log("EXISTING ACCESS TOKEN IS VALID");
         return token;
       }
 
-      // Access token has expired, so we need to refresh it ...
-      console.log("ACCESS TOKEN HAS EXPIRED, REFRESHING...");
-      return await refreshAccessToken(token);
+      // Access token has expired, try to update it
+      return refreshAccessToken(token);
     },
-
     async session({ session, token }) {
       session.user = token.user;
       session.accessToken = token.accessToken;
@@ -109,10 +84,4 @@ export default NextAuth({
       return session;
     },
   },
-
-  // secret: process.env.NEXTAUTH_SECRET,
-  // pages: {
-  //   signIn: "/auth/signin",
-  //   signOut: "/"
-  // }
 });
