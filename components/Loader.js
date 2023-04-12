@@ -1,5 +1,5 @@
 import { ThreeBounce } from "better-react-spinkit";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function Loader() {
   return (
