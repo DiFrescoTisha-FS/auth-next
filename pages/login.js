@@ -1,5 +1,5 @@
 import { getProviders, signIn, useSession } from "next-auth/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import logocircle from '/public/Spotify_Icon_RGB_Black.png'
 import Head from "next/head";
 import { useEffect } from "react";
