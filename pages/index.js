@@ -3,7 +3,16 @@ import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
 import Navbar from '@component/components/Navbar'
 
+import { getProviders, signIn } from "next-auth/react";
+import Image from "next/image";
+import logocircle from '/public/Spotify_Icon_RGB_Black.png'
+import Login from './login';
+import Link from 'next/link'
+
+
+
 export default function Home() {
+  console.log(Object, "objext console.log")
   const { data: session }= useSession()
   console.log({ session })
   return (
@@ -17,9 +26,34 @@ export default function Home() {
         <Navbar/>
       <main className={styles.main}>
         <h1 className={styles.title}>
-        {session ? `${session.user.name}, ` : ''}Welcome to Next.js!
+        {session ? `${session.user.name}, Welcome to Next.js!`
+         :
+         <div className="loginpage">
+      <Image src={logocircle} alt="Spotify logo" className="login_logo" />
+      
+      <Link
+              href='/api/auth/signin'
+              onClick={e => {
+                e.preventDefault()
+                // signIn('spotify')
+                signIn('spotify')
+              }}>             
+                Sign In             
+            </Link>
+      </div>
+         }
         </h1>
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const providers = await getProviders();
+
+  return {
+    props: {
+      providers,
+    }
+  }
 }
