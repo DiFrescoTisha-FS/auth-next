@@ -16,10 +16,10 @@ export default function Home() {
 
   // manually wrote css in the globals.css lables the classes below 
 const colors = [
-  "test",
-  "test1",
-  "test2",
-  "test3",
+  "pink",
+  "blue",
+  "green",
+  "red",
 ];
   const { data: session }= useSession()
   const [color, setColor] = useState(null); 
