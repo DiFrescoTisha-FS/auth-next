@@ -9,10 +9,34 @@ import logocircle from '/public/Spotify_Icon_RGB_Black.png'
 import Login from './login';
 import Link from 'next/link'
 
-
-
+// imports from center file
+import { ChevronDownIcon } from "@heroicons/react/outline"
+import { useState, useEffect } from "react"
+import { shuffle } from "lodash"
+// imports from center file
 export default function Home() {
+
+  // variable from center file
+const colors = [
+  "from-indigo-500",
+  "from-blue-500",
+  "from-green-500",
+  "from-red-500",
+  "from-yellow-500",
+  "from-pink-500",
+  "from-purple-500",
+];
   const { data: session }= useSession()
+  const [color, setColor] = useState(null); // variable from center file 
+
+  // imports from center file
+  useEffect(() => {
+    setColor(shuffle(colors).pop());
+  }, [])
+  // imports from center file
+
+
+
   console.log({ session })
   return (
     <div className={styles.container}>
@@ -26,7 +50,26 @@ export default function Home() {
         
       <main className={styles.main}>
         <h1 className={styles.title}>
-        {session ? `${session.user.name}, Welcome to Next.js!`
+        {session ? 
+        // imports from center file
+        <div className="flex-grow text-white">
+      <header className="absolute top-5 right-8">
+        <div className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
+          <img 
+            className="rounded-full w-10 h-10" 
+            src={session?.user.image} 
+            alt="" 
+          />
+          <h2>{session?.user.name}</h2>
+          <ChevronDownIcon className="h-5 w-5" />
+        </div>
+      </header>
+
+      <section className={`flex items-end space bg-gradient-to-b to-black ${color} h-80 text-white padding-8 w-full`}>
+        <h1>hello</h1>
+      </section>
+    </div>
+    // imports from center file
          :
          <div className="loginpage">
       <Image src={logocircle} alt="Spotify logo" className="login_logo" />
