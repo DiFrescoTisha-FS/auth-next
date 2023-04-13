@@ -8,35 +8,28 @@ import Image from "next/image";
 import logocircle from '/public/Spotify_Icon_RGB_Black.png'
 import Login from './login';
 import Link from 'next/link'
-
 // imports from center file
 import { ChevronDownIcon } from "@heroicons/react/outline"
 import { useState, useEffect } from "react"
 import { shuffle } from "lodash"
-// imports from center file
 export default function Home() {
 
-  // variable from center file
+  // manually wrote css in the globals.css lables the classes below 
 const colors = [
-  "from-indigo-500",
-  "from-blue-500",
-  "from-green-500",
-  "from-red-500",
-  "from-yellow-500",
-  "from-pink-500",
-  "from-purple-500",
+  "test",
+  "test1",
+  "test2",
+  "test3",
 ];
   const { data: session }= useSession()
-  const [color, setColor] = useState(null); // variable from center file 
-
-  // imports from center file
+  const [color, setColor] = useState(null); 
+  const randomNumber = Math.floor(Math.random() * 4); // rng for the variable of colors
   useEffect(() => {
-    setColor(shuffle(colors).pop());
+    setColor(colors[randomNumber]); //calls the variable colors and picks a random one out of the variable selection
   }, [])
-  // imports from center file
 
 
-
+  console.log(color)
   console.log({ session })
   return (
     <div className={styles.container}>
@@ -47,11 +40,10 @@ const colors = [
       </Head>
 
         <Navbar/>
-        
+         <div className={`${color}`} > hello test</div>{/* takes the classname and puts the variable that works above to put the random classname that you want for the colors of choice */}
       <main className={styles.main}>
         <h1 className={styles.title}>
         {session ? 
-        // imports from center file
         <div className="flex-grow text-white">
       <header className="absolute top-5 right-8">
         <div className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
@@ -65,11 +57,10 @@ const colors = [
         </div>
       </header>
 
-      <section className={`flex items-end space bg-gradient-to-b to-black ${color} h-80 text-white padding-8 w-full`}>
+      <section className={` flex items-end space bg-gradient-to-b to-black ${color} h-80 text-white padding-8 w-full`}>
         <h1>hello</h1>
       </section>
     </div>
-    // imports from center file
          :
          <div className="loginpage">
       <Image src={logocircle} alt="Spotify logo" className="login_logo" />
