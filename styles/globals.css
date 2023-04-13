@@ -15,9 +15,9 @@ a {
   text-decoration: none;
 }
 
-/* * {
+* {
   box-sizing: border-box;
-} */
+}
 
 .logo {
   width: 50px;
@@ -40,9 +40,6 @@ a {
   background-color: white;
   border-radius: 10px;
   display: absolute;
-  
-
-
 }
 
 .loginpage{

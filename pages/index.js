@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useSession } from 'next-auth/react'
 import Navbar from '@component/components/Navbar'
-
+// import Center from '../components/Center'
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import logocircle from '/public/Spotify_Icon_RGB_Black.png'
@@ -23,6 +23,7 @@ export default function Home() {
       </Head>
 
         <Navbar/>
+        
       <main className={styles.main}>
         <h1 className={styles.title}>
         {session ? `${session.user.name}, Welcome to Next.js!`
