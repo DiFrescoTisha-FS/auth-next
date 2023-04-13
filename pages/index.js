@@ -8,11 +8,28 @@ import Image from "next/image";
 import logocircle from '/public/Spotify_Icon_RGB_Black.png'
 import Login from './login';
 import Link from 'next/link'
-
-
-
+// imports from center file
+import { ChevronDownIcon } from "@heroicons/react/outline"
+import { useState, useEffect } from "react"
+import { shuffle } from "lodash"
 export default function Home() {
+
+  // manually wrote css in the globals.css lables the classes below 
+const colors = [
+  "pink",
+  "blue",
+  "green",
+  "red",
+];
   const { data: session }= useSession()
+  const [color, setColor] = useState(null); 
+  const randomNumber = Math.floor(Math.random() * 4); // rng for the variable of colors
+  useEffect(() => {
+    setColor(colors[randomNumber]); //calls the variable colors and picks a random one out of the variable selection
+  }, [])
+
+
+  console.log(color)
   console.log({ session })
   return (
     <div className={styles.container}>
@@ -23,10 +40,27 @@ export default function Home() {
       </Head>
 
         <Navbar/>
-        
+         <div className={`${color}`} > hello test</div>{/* takes the classname and puts the variable that works above to put the random classname that you want for the colors of choice */}
       <main className={styles.main}>
         <h1 className={styles.title}>
-        {session ? `${session.user.name}, Welcome to Next.js!`
+        {session ? 
+        <div className="flex-grow text-white">
+      <header className="absolute top-5 right-8">
+        <div className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
+          <img 
+            className="rounded-full w-10 h-10" 
+            src={session?.user.image} 
+            alt="" 
+          />
+          <h2>{session?.user.name}</h2>
+          <ChevronDownIcon className="h-5 w-5" />
+        </div>
+      </header>
+
+      <section className={` flex items-end space bg-gradient-to-b to-black ${color} h-80 text-white padding-8 w-full`}>
+        <h1>hello</h1>
+      </section>
+    </div>
          :
          <div className="loginpage">
       <Image src={logocircle} alt="Spotify logo" className="login_logo" />
