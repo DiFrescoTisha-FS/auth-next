@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import Image from 'next/image'
-
+import Center from '../components/Center'
 import logo from '/public/logo.png'
 
 function Navbar() {
@@ -59,6 +59,7 @@ console.log({ session })
         )}
       </ul>
     </nav>
+    
   );
 }
 
