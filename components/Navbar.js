@@ -28,9 +28,9 @@ useEffect(() => {
 // const result = useSession()
 console.log({ session })
   return (
-    <nav className={`top-2 flex items-start space bg-gradient-to-b to-black ${color} h-40 text-white p-8 w-full`}>
+    <nav className={`top-2 flex justify-between items-start space bg-gradient-to-b to-black ${color} h-40 text-white p-8 w-full`}>
 
-        <Image src={logo} alt="spotify logo" className="w-44 flex flex-row justify-start" />
+        <Image src={logo} alt="spotify logo" className="w-28 flex flex-row justify-between mb-6" />
  
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
         <li>
@@ -51,7 +51,7 @@ console.log({ session })
         <li className="top-5">
         <div className="flex items-center mt-0 bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
           <img 
-            className="rounded-full w-10 h-10" 
+            className="rounded-full w-8 h-8" 
             src={session?.user.image} 
             alt="" 
           />
