@@ -3,6 +3,7 @@ import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import Image from 'next/image'
 import Center from '../components/Center'
 import logo from '/public/logo.png'
+import { ChevronDownIcon } from "@heroicons/react/outline"
 
 function Navbar() {
   // const {session, loading} = useSession()
@@ -29,6 +30,17 @@ console.log({ session })
           <Link href='/blog'>
           {session ? `Blog` : ''}
           </Link>
+        </li>
+        <li className="top-5 right-8">
+        <div className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
+          <img 
+            className="rounded-full w-10 h-10" 
+            src={session?.user.image} 
+            alt="" 
+          />
+          <h2>{session?.user.name}</h2>
+          <ChevronDownIcon className="h-5 w-5" />
+        </div>
         </li>
 
         {!loading && !session && (

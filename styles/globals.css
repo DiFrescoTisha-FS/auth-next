@@ -15,6 +15,117 @@ a {
   text-decoration: none;
 }
  */
+ @import url("https://heroicons.com/outline.css");
+
+/* Import Next.js session CSS (assuming it's already imported in the main CSS file) */
+/* @import url("next-auth.css"); */
+
+/* Define the colors */
+.from-indigo-500 {
+  background-color: #6366f1;
+}
+.from-blue-500 {
+  background-color: #3b82f6;
+}
+.from-green-500 {
+  background-color: #10b981;
+}
+.from-red-500 {
+  background-color: #ef4444;
+}
+.from-yellow-500 {
+  background-color: #f59e0b;
+}
+.from-pink-500 {
+  background-color: #ec4899;
+}
+.from-purple-500 {
+  background-color: #8b5cf6;
+}
+
+/* Define the Center component */
+.flex-grow {
+  flex-grow: 1;
+}
+.text-white {
+  color: #fff;
+}
+.absolute {
+  position: absolute;
+}
+.top-5 {
+  top: 1.25rem;
+}
+.right-8 {
+  right: 2rem;
+}
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+.bg-black {
+  background-color: #000;
+}
+.space-x-3 {
+  margin-right: 0.75rem;
+}
+.opacity-90 {
+  opacity: 0.9;
+}
+.hover\:opacity-80:hover {
+  opacity: 0.8;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.p-1 {
+  padding: 0.25rem;
+}
+.pr-2 {
+  padding-right: 0.5rem;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.h-10 {
+  height: 2.5rem;
+}
+.h-5 {
+  height: 1.25rem;
+}
+.w-5 {
+  width: 1.25rem;
+}
+.h-80 {
+  height: 20rem;
+}
+.padding-8 {
+  padding: 2rem;
+}
+.w-full {
+  width: 100%;
+}
+.items-end {
+  align-items: flex-end;
+}
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+/* Define the Center component header */
+header {
+  z-index: 10;
+}
+
+/* Define the Center component section */
+section {
+  transition: background-color 0.3s ease;
+}
 
 .logo {
   width: 50px;
