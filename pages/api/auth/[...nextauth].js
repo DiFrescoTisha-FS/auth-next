@@ -18,6 +18,9 @@ const SPOTIFY_AUTHORIZATION_URL =
  * returns the old token and an error property
  */
 async function refreshAccessToken(token) {
+  console.log(token);
+  
+
   try {
 
     const url =
