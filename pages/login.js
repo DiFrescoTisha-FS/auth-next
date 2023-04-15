@@ -1,3 +1,5 @@
+
+
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
 import logocircle from '/public/Spotify_green.png'
