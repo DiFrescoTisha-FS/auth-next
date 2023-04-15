@@ -33,17 +33,18 @@ section {
 }
 
 .login_logo {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
 }
 
 .login_button {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   display: absolute;
 }
 

@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import Image from 'next/image'
-import Center from '../components/Center'
+import Searchbar from '../components/Searchbar'
+import Login from '../components/Login'
+// import Center from '../components/Center'
 import logo from '/public/Spotify_Black.png'
 import { ChevronDownIcon } from "@heroicons/react/outline"
 import { useState, useEffect } from 'react'
@@ -28,17 +30,20 @@ useEffect(() => {
 // const result = useSession()
 console.log({ session })
   return (
-    <nav className={`top-2 flex justify-between items-start space bg-gradient-to-b to-black ${color} h-40 text-white p-8 w-full`}>
+    <nav className={`top-2 flex justify-between items-start space bg-gradient-to-b to-black ${color} h-40 text-[#E4E4E7] p-8 w-full`}>
 
         <Image src={logo} alt="spotify logo" className="w-28 flex flex-row justify-between mb-6" />
  
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
+      
         <li>
-          <Link href='/'>
+        {session ? <Searchbar /> : <Login /> }
+          
+          {/* <Link href='/'>
           {session ? `Home` : ''}
-          </Link>
+          </Link> */}
         </li>
-        <li>
+        {/* <li>
           <Link href='/dashboard'>
           {session ? `Dashboard` : ''}
           </Link>
@@ -47,15 +52,16 @@ console.log({ session })
           <Link href='/blog'>
           {session ? `Blog` : ''}
           </Link>
-        </li>
+        </li> */}
         <li className="top-5">
+        
         <div className="flex items-center mt-0 bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
           <img 
             className="rounded-full w-8 h-8" 
             src={session?.user.image} 
             alt="" 
           />
-          <h2>{session?.user.name}</h2>
+          <h2 className="text-gray-400">{session?.user.name}</h2>
           <ChevronDownIcon className="h-5 w-5" />
         </div>
         </li>

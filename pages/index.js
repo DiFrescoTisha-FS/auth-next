@@ -5,7 +5,8 @@ import Navbar from '@component/components/Navbar'
 // import Center from '../components/Center'
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
-import logocircle from '/public/Spotify_Icon_RGB_Black.png'
+import logocircle from '/public/Spotify_green.png'
+import logosquare from '../public/Unique.png'
 import Login from './login';
 import Link from 'next/link'
 // imports from center file
@@ -30,20 +31,23 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
         {session ? 
-        <div className="flex-grow text-white">
+        <div className="flex-grow text-black">
       </div>
          :
          <div className="loginpage">
-      <Image src={logocircle} alt="Spotify logo" className="login_logo" />
-      
-      <Link
+      <Image src={logosquare} alt="Spotify logo" className="login_logo" />
+      <div className="text-gray-400 mb-4">
+        <p>Please sign in to your Spotify account to</p>
+        <p>search for arists, albums and songs.</p>
+      </div>
+      <Link className="bg-[#3abf4eff] p-2 rounded-md text-black"
               href='/api/auth/signin'
               onClick={e => {
                 e.preventDefault()
                 // signIn('spotify')
                 signIn('spotify')
               }}>             
-                Sign In             
+                Sign In With Spotify            
             </Link>
       </div>
          }

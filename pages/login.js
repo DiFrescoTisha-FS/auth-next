@@ -1,6 +1,6 @@
 import { getProviders, signIn } from "next-auth/react";
 import Image from "next/image";
-import logocircle from '/public/Spotify_Icon_RGB_Black.png'
+import logocircle from '/public/Spotify_green.png'
 // import Navbar from "@component/components/Navbar";
 
 function Login({ providers }) {

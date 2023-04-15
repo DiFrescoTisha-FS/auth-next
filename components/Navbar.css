@@ -66,6 +66,10 @@ ul {
     -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
   }
+
+  .search_icon {
+    color : #A1A1AA;
+  }
   
   /* .loading {
     opacity: 0;
