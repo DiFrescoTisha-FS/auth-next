@@ -1,27 +1,31 @@
-// import { useState, useEffect } from 'react'
-// import { getSession, signIn } from 'next-auth/client'
+import { useState, useEffect } from 'react'
 
-// function Dashboard() {
-//   const [loading, setLoading] = useState(true)
+function Dashboard() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [dashboardData, setDashboardData] = useState(null)
+  useEffect(() => {
+    async function fetchDashboardData() {
+      const response = await fetch('http://localhost:4000/dashboard')
+      const data = await response.json()
+      setDashboardData(data)
+      setIsLoading(false)
+    }
+    fetchDashboardData()
+  }, [])
 
-//   useEffect(() => {
-//     const securePage = async () => {
-//       const session = await getSession()
-//       console.log({ session })
-//       if (!session) {
-//         signIn()
-//       } else {
-//         setLoading(false)
-//       }
-//     }
+  if (isLoading) {
+    return <h2>Loading...</h2>
+  }
 
-//     securePage()
-//   }, [])
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <h2>Posts - {dashboardData.posts}</h2>
+      <h2>Likes - {dashboardData.likes}</h2>
+      <h2>Followers - {dashboardData.followers}</h2>
+      <h2>Following - {dashboardData.following}</h2>
+    </div>
+  )
+}
 
-//   if (loading) {
-//     return <h2>Loading...</h2>
-//   }
-//   return <h1>Dashboard page</h1>
-// }
-
-// export default Dashboard
+export default Dashboard
