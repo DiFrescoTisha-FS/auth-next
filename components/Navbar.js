@@ -3,8 +3,8 @@ import { useSession, signIn, signOut, getSession } from "next-auth/react"
 import Image from 'next/image'
 import Searchbar from '../components/Searchbar'
 import Login from '../components/Login'
+import logo from '../public/Spotify_Logo_RGB_Black.png'
 // import Center from '../components/Center'
-import logo from '/public/Spotify_Black.png'
 import { ChevronDownIcon } from "@heroicons/react/outline"
 import { useState, useEffect } from 'react'
 import { shuffle } from "lodash"
@@ -36,8 +36,8 @@ console.log({ session })
  
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
       
-        <li>
-        {session ? <Searchbar /> : <Login /> }
+        <li className="flex flex-row justify-between items-center">
+        {session ? '<Searchbar />' : '<Login />' }
           
           {/* <Link href='/'>
           {session ? `Home` : ''}
