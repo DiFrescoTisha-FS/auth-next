@@ -2,9 +2,9 @@
 import querystring from 'querystring';
 
 const {
-  SPOTIFY_CLIENT_ID: client_id,
-  SPOTIFY_CLIENT_SECRET: client_secret,
-  REFRESH_TOKEN: refresh_token,
+  client_id = SPOTIFY_CLIENT_ID,
+  client_secret = SPOTIFY_CLIENT_SECRET,
+  refresh_token = REFRESH_TOKEN,
 } = process.env;
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');

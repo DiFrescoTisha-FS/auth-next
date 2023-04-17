@@ -1,3 +1,29 @@
+// import NextAuth from 'next-auth';
+// import SpotifyProvider from 'next-auth/providers/spotify';
+
+// export default NextAuth({
+//   providers: [
+//     SpotifyProvider({
+//       authorization:
+//         'https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private',
+//       clientId: process.env.SPOTIFY_CLIENT_ID,
+//       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+//     }),
+//   ],
+//   callbacks: {
+//     async jwt({token, account}) {
+//       if (account) {
+//         token.accessToken = account.refresh_token;
+//       }
+//       return token;
+//     },
+//     async session(session, user) {
+//       session.user = user;
+//       return session;
+//     },
+//   },
+// });
+
 import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../lib/mongodb";
@@ -77,7 +103,7 @@ export default NextAuth({
   },
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
-    secret: process.env.NEXTAUTH_JWT_SECRET,
+    secret: process.env.JWT_SIGNING_PRIVATE_KEY
   },
   callbacks: {
     async jwt({ token, account, user }) {
