@@ -52,27 +52,30 @@
 
 // import styles from '../styles/Home.module.css'
 // import { useSession } from 'next-auth/react'
-import AlbumProvider from "./context/albumContext";
+import SearchProvider from "./context/searchContext";
 import Navbar from "@component/components/Navbar";
-import Category from "@component/components/Category";
+// import Category from "@component/components/Category";
 // import Center from '../components/Center'
 // import Image from "next/image";
 // import logocircle from '/public/Spotify_green.png'
 
 // import Login from './login';
 
-import GetAlbums from "@component/pages/components/albums/GetAlbums";
-import List from "@component/pages/components/albums/List";
+import GetSearches from "@component/pages/components/searches/GetSearches";
+import List from "@component/pages/components/searches/List";
+// import Searcher from "@component/pages/components/Searcher";
 
 export default function Home() {
   return (
-    <AlbumProvider>
+    <SearchProvider>
       <div className="flex-1 mx-auto">
         <Navbar />
         {/* <Category /> */}
-        <GetAlbums />
+        <GetSearches />
         <List />
+        {/* <GetAlbums /> */}
+        {/* <List /> */}
       </div>
-    </AlbumProvider>
+    </SearchProvider>
   );
 }

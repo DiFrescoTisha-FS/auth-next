@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
+
 export const AlbumContext = createContext();
+
 export default function AlbumProvider({ children }) {
   const [albums, setAlbums] = useState([]);
   return (
