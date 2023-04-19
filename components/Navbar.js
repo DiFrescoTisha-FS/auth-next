@@ -36,13 +36,13 @@ console.log({ session })
  
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
       
-        <li className="flex flex-row justify-between items-center">
-        {session ? <Link href="/" /> : <Link href="/login" /> }
+        {/* <li className="flex flex-row justify-between items-center"> */}
+        {/* {session ? <Link href="/" /> : <Link href="/login" /> } */}
           
           {/* <Link href='/'>
           {session ? `Home` : ''}
           </Link> */}
-        </li>
+        {/* </li> */}
         {/* <li>
           <Link href='/dashboard'>
           {session ? `Dashboard` : ''}
@@ -56,7 +56,7 @@ console.log({ session })
         <li className="top-5">
         
         <div className="flex items-center mt-0 bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
-          <img 
+          <Image 
             className="rounded-full w-8 h-8" 
             src={session?.user.image} 
             alt="" 
