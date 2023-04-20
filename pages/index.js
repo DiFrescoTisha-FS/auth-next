@@ -54,6 +54,7 @@
 // import { useSession } from 'next-auth/react'
 import AlbumProvider from "./context/albumContext";
 import Navbar from "@component/components/Navbar";
+import NavDropdown from "@component/components/NavDropdown";
 // import ArtistList from "@component/pages/components/artists/ArtistList";
 // import ArtistProvider from "./context/artistContext";
 // import GetArtists from "@component/pages/components/artists/GetArtists";
@@ -74,6 +75,7 @@ export default function Home() {
 
       <div className="flex-1 mx-auto">
         <Navbar />
+        <NavDropdown />
         {/* <GetArtists /> */}
         {/* <ArtistList /> */}
         <GetAlbums />
