@@ -52,8 +52,11 @@
 
 // import styles from '../styles/Home.module.css'
 // import { useSession } from 'next-auth/react'
-import SearchProvider from "./context/searchContext";
+import AlbumProvider from "./context/albumContext";
 import Navbar from "@component/components/Navbar";
+// import ArtistList from "@component/pages/components/artists/ArtistList";
+// import ArtistProvider from "./context/artistContext";
+// import GetArtists from "@component/pages/components/artists/GetArtists";
 // import Category from "@component/components/Category";
 // import Center from '../components/Center'
 // import Image from "next/image";
@@ -61,21 +64,22 @@ import Navbar from "@component/components/Navbar";
 
 // import Login from './login';
 
-import GetSearches from "@component/pages/components/searches/GetSearches";
-import List from "@component/pages/components/searches/List";
+import GetAlbums from "@component/pages/components/albums/GetAlbums";
+import List from "@component/pages/components/albums/List";
 // import Searcher from "@component/pages/components/Searcher";
 
 export default function Home() {
   return (
-    <SearchProvider>
+    <AlbumProvider>
+
       <div className="flex-1 mx-auto">
         <Navbar />
-        {/* <Category /> */}
-        <GetSearches />
+        {/* <GetArtists /> */}
+        {/* <ArtistList /> */}
+        <GetAlbums />
         <List />
-        {/* <GetAlbums /> */}
-        {/* <List /> */}
       </div>
-    </SearchProvider>
+
+    </AlbumProvider>
   );
 }
