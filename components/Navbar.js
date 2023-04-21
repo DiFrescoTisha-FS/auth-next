@@ -19,6 +19,10 @@ const colors = [
   "from-purple-500",
 ];
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
 function Navbar() {
   // const {session, loading} = useSession()
 const { data: session, loading } = useSession()
@@ -36,7 +40,8 @@ console.log({ session })
  
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
       
-        <li>
+        <li className="p-4">
+        
         {session ? <Searchbar /> : <Login /> }
           
           {/* <Link href='/'>
