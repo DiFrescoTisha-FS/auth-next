@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../lib/mongodb";
 import SpotifyProvider from "next-auth/providers/spotify";
-import spotifyApi, { LOGIN_URL } from "../../../lib/spotify";
+// import spotifyApi, { LOGIN_URL } from "../../../lib/spotify";
 
 const SPOTIFY_AUTHORIZATION_URL =
   "https://accounts.spotify.com/authorize?" +
@@ -18,12 +18,10 @@ const SPOTIFY_AUTHORIZATION_URL =
  * returns the old token and an error property
  */
 async function refreshAccessToken(token) {
-  try {
-    // spotifyApi.setAccessToken(token.accessToken);
-    // spotifyApi.setRefreshToken(token.refreshToken);
+  console.log(token);
+  
 
-    // const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
-    // console.log("Refreshed token is", refreshedToken);
+  try {
 
     const url =
       "https://accounts.spotify.com/api/token?" +
@@ -79,7 +77,7 @@ export default NextAuth({
   },
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
-    secret: process.env.NEXTAUTH_JWT_SECRET,
+    secret: process.env.JWT_SIGNING_PRIVATE_KEY
   },
   callbacks: {
     async jwt({ token, account, user }) {
