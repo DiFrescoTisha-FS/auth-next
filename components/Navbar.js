@@ -1,13 +1,10 @@
-import Link from 'next/link'
-import { useSession, signIn, signOut, getSession } from "next-auth/react"
-import Image from 'next/image'
-import Searchbar from '../components/Searchbar'
-import Login from '../components/Login'
-import logo from '../public/Spotify_Logo_RGB_Black.png'
-// import Center from '../components/Center'
-import { ChevronDownIcon } from "@heroicons/react/outline"
-import { useState, useEffect } from 'react'
-import { shuffle } from "lodash"
+import Link from 'next/link';
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from 'next/image';
+import logo from '../public/Spotify_Logo_RGB_Black.png';
+import { ChevronDownIcon } from "@heroicons/react/outline";
+import { useState, useEffect } from 'react';
+import { shuffle } from "lodash";
 
 const colors = [
   "from-indigo-500",
@@ -20,82 +17,58 @@ const colors = [
 ];
 
 function Navbar() {
-  // const {session, loading} = useSession()
-const { data: session, loading } = useSession()
-const [color, setColor] = useState(null);
+  const { data: session, loading } = useSession();
+  const [color, setColor] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-useEffect(() => {
-  setColor(shuffle(colors).pop());
-}, [])
-// const result = useSession()
-console.log({ session })
+  const handleToggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleSignOut = () => {
+    signOut();
+  };
+
+  useEffect(() => {
+    setColor(shuffle(colors).pop());
+  }, []);
+
   return (
     <nav className={`top-2 flex justify-between items-start space bg-gradient-to-b to-black ${color} h-40 text-[#E4E4E7] p-8 w-full`}>
+      <Image src={logo} alt="spotify logo" className="w-28 flex flex-row justify-between mb-6" />
 
-        <Image src={logo} alt="spotify logo" className="w-28 flex flex-row justify-between mb-6" />
- 
       <ul className={`main-nav ${!session && loading ? 'loading' : 'loaded'}`}>
-      
-        <li className="flex flex-row justify-between items-center">
-        {session ? '<Searchbar />' : '<Login />' }
-          
-          {/* <Link href='/'>
-          {session ? `Home` : ''}
-          </Link> */}
-        </li>
-        {/* <li>
-          <Link href='/dashboard'>
-          {session ? `Dashboard` : ''}
-          </Link>
-        </li>
-        <li>
-          <Link href='/blog'>
-          {session ? `Blog` : ''}
-          </Link>
-        </li> */}
         <li className="top-5">
-        
-        <div className="flex items-center mt-0 bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
-          <img 
-            className="rounded-full w-8 h-8" 
-            src={session?.user.image} 
-            alt="" 
-          />
-          <h2 className="text-gray-400">{session?.user.name}</h2>
-          <ChevronDownIcon className="h-5 w-5" />
-        </div>
+          <div className="relative">
+            <button
+              className="flex items-center mt-0 bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
+              onClick={handleToggleDropdown}
+            >
+              {session?.user?.image && (
+                <img
+                  className="rounded-full w-8 h-8"
+                  src={session.user.image}
+                  alt=""
+                />
+              )}
+              <h2 className="text-gray-400">{session?.user?.name}</h2>
+              <ChevronDownIcon className="h-5 w-5" />
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 py-2 w-38 bg-gray-300 rounded-lg shadow-lg z-10">
+                <button
+                  className="block px-2 py-1 text-gray-800 hover:bg-gray-100 hover:text-gray-900 w-full text-left"
+                  onClick={handleSignOut}
+                >
+                  Sign out
+                </button>
+              </div>
+            )}
+          </div>
         </li>
-
-        {!loading && !session && (
-          <li>
-            <Link
-              href='/api/auth/signin'
-              onClick={e => {
-                e.preventDefault()
-                // signIn('spotify')
-                signIn('spotify')
-              }}>             
-                Sign In             
-            </Link>
-          </li>
-        )}
-        {session && (
-          <li>
-            <Link
-              href='/api/auth/signout'
-              onClick={e => {
-                e.preventDefault()
-                // signOut('spotify')
-                signOut('spotify')
-              }}>              
-                Sign Out              
-            </Link>
-          </li>
-        )}
       </ul>
     </nav>
-    
   );
 }
 
-export default Navbar
+export default Navbar;

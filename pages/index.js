@@ -54,7 +54,7 @@
 // import { useSession } from 'next-auth/react'
 import AlbumProvider from "./context/albumContext";
 import Navbar from "@component/components/Navbar";
-import Category from "@component/components/Category";
+// import Category from "@component/components/Category";
 // import Center from '../components/Center'
 // import Image from "next/image";
 // import logocircle from '/public/Spotify_green.png'
